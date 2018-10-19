@@ -2,13 +2,284 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "nx-web": {
+      "root": "apps/nx-web/",
+      "sourceRoot": "apps/nx-web/src",
+      "projectType": "application",
+      "prefix": "nx-workspace",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/nx-web",
+            "index": "apps/nx-web/src/index.html",
+            "main": "apps/nx-web/src/main.ts",
+            "polyfills": "apps/nx-web/src/polyfills.ts",
+            "tsConfig": "apps/nx-web/tsconfig.app.json",
+            "assets": [
+              "apps/nx-web/src/favicon.ico",
+              "apps/nx-web/src/assets"
+            ],
+            "styles": [
+              "apps/nx-web/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-web/src/environments/environment.ts",
+                  "with": "apps/nx-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nx-web:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "nx-web:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nx-web:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/nx-web/src/test.ts",
+            "polyfills": "apps/nx-web/src/polyfills.ts",
+            "tsConfig": "apps/nx-web/tsconfig.spec.json",
+            "karmaConfig": "apps/nx-web/karma.conf.js",
+            "styles": [
+              "apps/nx-web/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/nx-web/src/favicon.ico",
+              "apps/nx-web/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nx-web/tsconfig.app.json",
+              "apps/nx-web/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "nx-web-e2e": {
+      "root": "apps/nx-web-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/nx-web-e2e/protractor.conf.js",
+            "devServerTarget": "nx-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/nx-web-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "prefix": "libs/ui",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/blibs/uild-angular:karma",
+          "options": {
+            "main": "libs/ui/src/test.ts",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "karmaConfig": "libs/ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/blibs/uild-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "nx-app": {
+      "root": "apps/nx-app/",
+      "sourceRoot": "apps/nx-app/src",
+      "projectType": "application",
+      "prefix": "apps/nx-app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/nx-app",
+            "index": "apps/nx-app/src/index.html",
+            "main": "apps/nx-app/src/main.ts",
+            "polyfills": "apps/nx-app/src/polyfills.ts",
+            "tsConfig": "apps/nx-app/tsconfig.app.json",
+            "assets": [
+              "apps/nx-app/src/favicon.ico",
+              "apps/nx-app/src/assets"
+            ],
+            "styles": [
+              "apps/nx-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-app/src/environments/environment.ts",
+                  "with": "apps/nx-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nx-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "nx-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nx-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/nx-app/src/test.ts",
+            "polyfills": "apps/nx-app/src/polyfills.ts",
+            "tsConfig": "apps/nx-app/tsconfig.spec.json",
+            "karmaConfig": "apps/nx-app/karma.conf.js",
+            "styles": [
+              "apps/nx-app/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/nx-app/src/favicon.ico",
+              "apps/nx-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nx-app/tsconfig.app.json",
+              "apps/nx-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "nx-app-e2e": {
+      "root": "apps/nx-app-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/nx-app-e2e/protractor.conf.js",
+            "devServerTarget": "nx-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/nx-app-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics"
-    
-  }
+  },
+  "defaultProject": "nx-web"
 }

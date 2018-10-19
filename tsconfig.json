@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@nx-workspace/ui": [
+        "libs/ui/src/index.ts"
+      ]
     }
   },
   "exclude": [
