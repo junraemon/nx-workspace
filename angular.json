@@ -29,12 +29,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/nx-web/src/environments/environment.ts",
-                  "with": "apps/nx-web/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "apps/nx-web/src/environments/environment.ts",
+                "with": "apps/nx-web/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -64,33 +62,25 @@
             "browserTarget": "nx-web:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "apps/nx-web/src/test.ts",
-            "polyfills": "apps/nx-web/src/polyfills.ts",
-            "tsConfig": "apps/nx-web/tsconfig.spec.json",
-            "karmaConfig": "apps/nx-web/karma.conf.js",
-            "styles": [
-              "apps/nx-web/src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "apps/nx-web/src/favicon.ico",
-              "apps/nx-web/src/assets"
-            ]
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "apps/nx-web/tsconfig.app.json",
+              "apps/nx-web/tsconfig.spec.json",
               "apps/nx-web/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/nx-web/jest.config.js",
+            "tsConfig": "apps/nx-web/tsconfig.spec.json",
+            "setupFile": "apps/nx-web/src/test-setup.ts"
           }
         }
       }
@@ -180,12 +170,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/nx-app/src/environments/environment.ts",
-                  "with": "apps/nx-app/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "apps/nx-app/src/environments/environment.ts",
+                "with": "apps/nx-app/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -216,20 +204,11 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@nrwl/builders:jest",
           "options": {
-            "main": "apps/nx-app/src/test.ts",
-            "polyfills": "apps/nx-app/src/polyfills.ts",
+            "jestConfig": "apps/nx-app/jest.config.js",
             "tsConfig": "apps/nx-app/tsconfig.spec.json",
-            "karmaConfig": "apps/nx-app/karma.conf.js",
-            "styles": [
-              "apps/nx-app/src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "apps/nx-app/src/favicon.ico",
-              "apps/nx-app/src/assets"
-            ]
+            "setupFile": "apps/nx-app/src/test-setup.ts"
           }
         },
         "lint": {

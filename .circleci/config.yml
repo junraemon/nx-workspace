@@ -35,5 +35,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: xvfb-run -a npm run test --single-run --no-progress --browser=ChromeNoSandbo
+      # run tests on nx-web!
+      - run: npm run test:nx-web
+
+      # run tests on nx-app!
+      - run: npm run test:nx-app
