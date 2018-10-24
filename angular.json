@@ -119,11 +119,11 @@
       "prefix": "libs/ui",
       "architect": {
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@nrwl/builders:jest",
           "options": {
-            "main": "libs/ui/src/test.ts",
+            "jestConfig": "libs/ui/jest.config.js",
             "tsConfig": "libs/ui/tsconfig.spec.json",
-            "karmaConfig": "libs/ui/karma.conf.js"
+            "setupFile": "libs/ui/src/test-setup.ts"
           }
         },
         "lint": {

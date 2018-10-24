@@ -33,8 +33,5 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests on nx-web!
-      - run: npm run test:nx-web
-
-      # run tests on nx-app!
-      - run: npm run test:nx-app
+      # run tests on all apps and libs!
+      - run: npm test
