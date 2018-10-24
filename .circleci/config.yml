@@ -26,7 +26,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      # install npm dependencies
+      - run:
+          name: install
+          command: yarn install
 
       - save_cache:
           paths:
@@ -34,4 +37,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests on all apps and libs!
-      - run: npm test
+      - run: 
+          name: test
+          command: npm test
+
+       # run semantic release
+       - run:
+          name: release
+          command: npm run semantic-release || true
