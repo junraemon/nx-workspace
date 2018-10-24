@@ -27,9 +27,7 @@ jobs:
             - v1-dependencies-
 
       # install npm dependencies
-      - run:
-          name: install
-          command: yarn install
+      - run: yarn install
 
       - save_cache:
           paths:
@@ -37,11 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests on all apps and libs!
-      - run: 
-          name: test
-          command: npm test
+      - run: npm test
 
        # run semantic release
-       - run:
-          name: release
-          command: npm run semantic-release || true
+       - run: npm run semantic-release || true
