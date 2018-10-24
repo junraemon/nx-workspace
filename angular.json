@@ -129,7 +129,7 @@
       "prefix": "libs/ui",
       "architect": {
         "test": {
-          "builder": "@angular-devkit/blibs/uild-angular:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/ui/src/test.ts",
             "tsConfig": "libs/ui/tsconfig.spec.json",
@@ -137,7 +137,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/blibs/uild-angular:tslint",
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/ui/tsconfig.lib.json",
