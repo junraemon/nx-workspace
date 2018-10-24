@@ -29,6 +29,12 @@ module.exports = () => {
     logLevel: constants.LOG_INFO,
     autoWatch: false,
     browsers: ['Chrome'],
+    customLaunchers: {
+      ChromeNoSandbox: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: true
   };
 };
