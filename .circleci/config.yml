@@ -38,4 +38,4 @@ jobs:
       - run: npm test
 
        # run semantic release
-       - run: npm run semantic-release || true
+      - run: npm run semantic-release || true
